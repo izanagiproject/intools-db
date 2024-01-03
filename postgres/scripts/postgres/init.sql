@@ -97,6 +97,39 @@ CREATE INDEX idx_materials_material_id ON materials (id);
 -- Indexes for the motors_specification table
 CREATE INDEX idx_motors_specification_material_id ON motors_specification (material_id);
 
+CREATE TABLE public.list_materials (
+	plant varchar(255) NULL,
+	area varchar(255) NULL,
+	category varchar(255) NULL,
+	"name" varchar(255) NULL,
+	capacity int4 NULL,
+	voltage int4 NULL,
+	"current" int4 NULL,
+	rpm int4 NULL,
+	shaft_diameter int4 NULL,
+	base_width int4 NULL,
+	base_length int4 NULL,
+	c int4 NULL,
+	e int4 NULL,
+	h int4 NULL,
+	maker varchar(255) NULL,
+	id int4 NOT NULL,
+	qcode varchar NULL,
+	installed_qty int4 NULL,
+	standby_qty int4 NULL,
+	spare_qty int4 NULL,
+	frame int4 NULL,
+	CONSTRAINT list_materials_pk PRIMARY KEY (id)
+);
+
+ALTER TABLE public.list_materials ADD spare_qty int4 NULL;
+ALTER TABLE public.list_materials ADD installed_qty int4 NULL;
+ALTER TABLE public.list_materials ADD standby_qty int4 NULL;
+ALTER TABLE public.list_materials ADD frame integer NULL;
+
+CREATE INDEX idx_capacity ON public.list_materials (capacity);
+CREATE INDEX idx_frame ON public.list_materials (frame);
+
 -- Plants Table
 INSERT INTO plants (id, name) VALUES
 (1, 'Plant A'),
